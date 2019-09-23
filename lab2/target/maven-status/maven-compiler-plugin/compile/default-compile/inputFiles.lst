@@ -1,0 +1,15 @@
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/DTOs/DisciplinaDTO3.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/services/DisciplinaService.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/entities/Usuario.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/services/UsuarioService.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/controllers/UsuarioController.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/services/JWTService.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/DTOs/DisciplinaDTO.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/entities/Disciplina.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/Lab2Application.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/controllers/DisciplinaController.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/filter/TokenFilter.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/repository/DisciplinaRepository.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/repository/UsuarioRepository.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/DTOs/DisciplinaDTO2.java
+/home/luciontm/Downloads/psoft-20190923T170253Z-001/psoft/lab2/src/main/java/ufcg/psoft/lab2/controllers/LoginController.java
