@@ -3,9 +3,11 @@ package ufcg.psoft.lab2.services;
 import com.fasterxml.jackson.core.filter.TokenFilter;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
+import ufcg.psoft.lab2.entities.Usuario;
 
 import javax.servlet.ServletException;
 import java.security.SignatureException;
+import java.util.Optional;
 
 @Service
 public class JWTService {
@@ -25,7 +27,7 @@ public class JWTService {
         return usuarioService.getUsuario(subject).isPresent();
     }
 
-    private String getSujeitoDoToken(String authorizationHeader) throws ServletException {
+    public String getSujeitoDoToken(String authorizationHeader) throws ServletException {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             throw new ServletException("Token inexistente ou mal formatado!");
         }
@@ -35,5 +37,12 @@ public class JWTService {
         String subject = null;
         subject = Jwts.parser().setSigningKey("quero cachaca").parseClaimsJws(token).getBody().getSubject();
         return subject;
+    }
+
+    public boolean usuarioTemPermissao(String authorizationHeader, String email) throws ServletException {
+        String subject = getSujeitoDoToken(authorizationHeader);
+
+        Optional<Usuario> optUsuario = usuarioService.getUsuario(subject);
+        return optUsuario.isPresent() && optUsuario.get().getEmail().equals(email);
     }
 }

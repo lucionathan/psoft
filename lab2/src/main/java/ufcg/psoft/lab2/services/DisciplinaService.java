@@ -3,9 +3,7 @@ package ufcg.psoft.lab2.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ufcg.psoft.lab2.DTOs.DisciplinaDTO;
-import ufcg.psoft.lab2.DTOs.DisciplinaDTO2;
-import ufcg.psoft.lab2.DTOs.DisciplinaDTO3;
+import ufcg.psoft.lab2.DTOs.*;
 import ufcg.psoft.lab2.entities.Disciplina;
 import ufcg.psoft.lab2.repository.DisciplinaRepository;
 
@@ -38,16 +36,35 @@ public class DisciplinaService {
         return new DisciplinaDTO(disciplina.getId(), disciplina.getNome(), disciplina.getNota(), disciplina.getComentarios(), disciplina.getLikes());
     }
 
+    public DisciplinaDTO3 incrementaLike(Long id) {
+        Disciplina disciplina = disciplinaDAO.findById(id).get();
+        disciplina.setLikes(disciplina.getLikes() + 1);
+        disciplinaDAO.save(disciplina);
+        return new DisciplinaDTO3(disciplina.getId(), disciplina.getNome(), disciplina.getLikes());
+    }
 
+    public DisciplinaDTO4 mudaNota(Long id, double nota) {
 
-    public List<Disciplina> addDisciplinas(List<DisciplinaDTO3> disciplinasdto) {
-        List<Disciplina> retorno = new ArrayList<Disciplina>();
-        for (DisciplinaDTO3 disciplina: disciplinasdto) {
-            Disciplina disciplina1 = new Disciplina(disciplina.getNome());
-            disciplinaDAO.save(disciplina1);
-            retorno.add(disciplina1);
-        }
+        Disciplina disciplina = disciplinaDAO.findById(id).get();
+        disciplina.setNota(nota);
+        disciplinaDAO.save(disciplina);
+        return new DisciplinaDTO4(disciplina.getId(), disciplina.getNome(), disciplina.getNota());
+    }
 
-        return retorno;
+    public DisciplinaDTO5 mudaComentarios(Long id, String comentario) {
+        Disciplina disciplina = disciplinaDAO.findById(id).get();
+        disciplina.setComentarios(disciplina.getComentarios() + System.lineSeparator() + comentario);
+
+        disciplinaDAO.save(disciplina);
+
+        return new DisciplinaDTO5(disciplina.getId(), disciplina.getNome(), disciplina.getComentarios());
+    }
+
+    public List<Disciplina> getDisciplinaOrdenadaPorLikes() {
+        return disciplinaDAO.findByOrderByLikesDesc();
+    }
+
+    public List<Disciplina> getDisciplinaOrdenadaPorNota() {
+        return disciplinaDAO.findByOrderByNotaDesc();
     }
 }

@@ -2,18 +2,16 @@ package ufcg.psoft.lab2.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public class DisciplinaDTO3 {
-
-
+public class DisciplinaDTO5 {
     private Long id;
     private String nome;
-    private Integer likes;
+    private String comentarios;
 
     @JsonCreator
-    public DisciplinaDTO3(Long id, String nome, Integer likes) {
+    public DisciplinaDTO5(Long id, String nome, String comentarios) {
         this.id = id;
         this.nome = nome;
-        this.likes = likes;
+        this.comentarios = comentarios;
     }
 
     public Long getId() {
@@ -24,7 +22,7 @@ public class DisciplinaDTO3 {
         return nome;
     }
 
-    public Integer getLikes() {
-        return likes;
+    public String getComentarios() {
+        return comentarios;
     }
 }

@@ -49,11 +49,27 @@ public class Disciplina {
         return nota;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setNota(double nota) {
+        this.nota = nota;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+
     public String getComentarios() {
         return comentarios;
     }
 
     public int getLikes() {
         return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

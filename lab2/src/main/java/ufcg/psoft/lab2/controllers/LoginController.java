@@ -2,11 +2,12 @@ package ufcg.psoft.lab2.controllers;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import ufcg.psoft.lab2.entities.Disciplina;
 import ufcg.psoft.lab2.entities.Usuario;
+import ufcg.psoft.lab2.services.JWTService;
 import ufcg.psoft.lab2.services.UsuarioService;
 
 import javax.servlet.ServletException;
@@ -20,10 +21,12 @@ public class LoginController {
     private final String TOKEN_KEY = "quero cachaca";
 
     private UsuarioService usuariosService;
+    private JWTService jwtService;
 
-    public LoginController(UsuarioService usuariosService) {
+    public LoginController(UsuarioService usuariosService, JWTService jwtService) {
         super();
         this.usuariosService = usuariosService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping("/login")
@@ -41,6 +44,7 @@ public class LoginController {
             throw new ServletException("Senha invalida!");
         }
 
+
         String token = Jwts.builder().setSubject(authUsuario.get().getEmail()).signWith(SignatureAlgorithm.HS512, TOKEN_KEY)
                 .setExpiration(new Date(System.currentTimeMillis() + 50 * 60 * 1000)).compact();
 
@@ -54,6 +58,17 @@ public class LoginController {
         public LoginResponse(String token) {
             this.token = token;
         }
+    }
+
+    @DeleteMapping("/usuarios/{email}")
+    public ResponseEntity<Usuario> deletaUsuario(@PathVariable String email, @RequestHeader String header) throws ServletException {
+        if(header == null || !header.startsWith("Bearer ") || this.jwtService.usuarioTemPermissao(header, email)) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+
+        String subject = this.jwtService.getSujeitoDoToken(header);
+
+        return new ResponseEntity(this.usuariosService.deletaUsuario(subject), HttpStatus.OK);
     }
 
 }

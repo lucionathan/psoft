@@ -24,4 +24,12 @@ public class UsuarioService {
 
     public Optional<Usuario> getUsuario(String email) { return this.usuarioDAO.findByEmail(email); }
 
+    public Usuario deletaUsuario(String subject) {
+
+        Usuario usuario = usuarioDAO.findByEmail(subject).get();
+
+        this.usuarioDAO.delete(usuario);
+
+        return usuario;
+    }
 }
